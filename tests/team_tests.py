@@ -28,41 +28,25 @@ import team
 class TeamTests(unittest.TestCase):
 
     def setUp(self):
-        self.dummy = team.Team(4, "La Grande")
+        self.dummy = team.Team()
 
     def test_team_exists(self):
         dummy_type = type(self.dummy)
         self.assertIs(dummy_type, team.Team)
 
-    def test_get_number_of_members(self):
-        self.assertEqual(self.dummy.get_number_of_members(), 4)
-
-    def test_set_number_of_members(self):
-        self.dummy.set_number_of_members(5)
-        self.assertEqual(self.dummy.number_of_members, 5)
-
     def test_get_team_name(self):
+        self.dummy._name = "La Grande"
         self.assertEqual(self.dummy.get_team_name(), "La Grande")
 
     def test_set_team_name(self):
         self.dummy.set_team_name("baker city")
-        self.assertEqual(self.dummy.name, "baker city")
+        self.assertEqual(self.dummy._name, "baker city")
 
-    def test_score_exists(self):
-        self.assertIsInstance(self.dummy.round_scores, dict)
+    def test_get_team_members(self):
+        self.dummy._team_members = ["Daniel", "Anna"]
+        self.assertEqual(self.dummy.get_team_members(), ["Daniel", "Anna"])
 
-    def test_add_round_scores(self):
-        self.dummy.add_round_scores(1, 220)
-        self.assertEqual(self.dummy.round_scores, {1: 220})
-
-    def test_delete_round_scores(self):
-        self.dummy.add_round_scores(1, 220)
-        self.dummy.add_round_scores(2, 40)
-        self.dummy.delete_round_scores(1)
-        self.assertEqual(self.dummy.round_scores, {2: 40})
-
-    def test_total_all_round_scores(self):
-        self.dummy.add_round_scores(1, 220)
-        self.dummy.add_round_scores(2, 40)
-        self.dummy.delete_round_scores(1)
-        self.assertEqual(self.dummy.total_all_round_scores(), 40)
+    def test_add_team_member(self):
+        self.dummy.add_team_members("Daniel")
+        self.dummy.add_team_members("Anna", "Heather", "Kimberly")
+        self.assertListEqual(self.dummy.get_team_members(), ["Daniel", "Anna", "Heather", "Kimberly"])

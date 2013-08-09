@@ -21,33 +21,48 @@ THE SOFTWARE.
 """
 
 class Team(object):
-    def __init__(self, number_of_members, name):
-        self.number_of_members = number_of_members
-        self.name = name
-        self.round_scores = {}
-        
-    def get_number_of_members(self):
-        return self.number_of_members
 
-    def set_number_of_members(self, number):
-        self.number_of_members = number
-        return self.number_of_members
+    def __init__(self):
+        self._name = ""
+        self._team_members = []
 
+    """Returns the name of the team.
+    Returns the name of the team.
+    Returns:
+        String:    The name of the team as a string.
+    """
     def get_team_name(self):
-        return self.name
+        return self._name
 
+    """Sets the name of the team.
+    Simply sets the name of the team.
+    Args:
+        String:    The name of the team as a string.
+    """
     def set_team_name(self, name):
-        self.name = name
-        return self.name
+        self._name = name
 
-    def add_round_scores(self, _round, score):
-        self.round_scores[_round] = score
+    """Gets the team_members of the team
+    Gets the team members and returns a list
+    Returns:
+        List:    A list of all the members on a team.
+    """
+    def get_team_members(self):
+        return self._team_members
 
-    def delete_round_scores(self, _round):
-        del self.round_scores[_round]
+    """Adds a team member.
+    Adds an indefinite number of members to a team.
+    Args:
+        Any:    Will take any input type.
+    """
+    def add_team_members(self, *names):
+        for member in names:
+            self._team_members.append(member)
 
-    def total_all_round_scores(self):
-        total = 0
-        for _round in self.round_scores:
-            total += self.round_scores[_round]
-        return total
+    """Gets the members of a team.
+    Tets all of the members of the team.
+    Returns:
+        List:    A list of team members in any type.
+    """
+    def get_team_members(self):
+        return self._team_members

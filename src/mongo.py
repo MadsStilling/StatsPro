@@ -27,37 +27,41 @@ THE SOFTWARE.
 """
 import pymongo
 import datetime
+from pymongo import MongoClient
 
 class pymongodb(object):
-	def __init__(self, ):
-		self.person
-	    
+	
+	def __init__(self):
+		
+		self.person  = {}
+		self.round   = {}
+		self.team    = {}
+		self.members = {}
+
 	def connect_to_mongo():
+	    
 	    client = MongoClient("localhost", 27017)
 	    db = client.statpro
 
-	def post_person():
-		post = {"person"  : _person,
-				"round"   : _round,
-				"tags"	  : [_tag, _tag2]
-				"date"    : _datetime
-				}
-		person = db.person
-		person_pers = person.insert(person)
+	def post_person(self, _round, _person):
+			post = {"person": self.person[_person],
+        			"round" : self.round[_round],
+        			"date"  : datetime.datetime.today()}
+			person = db.person
+			person_id = person.insert(person)
 
-	def post_round():
-		post = {"team"    : _team,
-				"members" : _members
-				"tags"	  : [_tag, _tag2]
-				"date"    : _datetime
-			    }
-		round = db.round
-		round_rond = round.insert(round)
+	def post_round(self, _team, _members):
+			post = {"team"    : self.team[_team],
+        			"members" : self.members[_members],
+        			"date"    : datetime.datetime.today()}
+
+			round = db.round
+			round_id = round.insert(round)
 
 	def search_person():
-		person.find_one({"_pers": person_pers})
+		person.find_one({"_id": person_pers})
 
 	def search_round():
-		round.find_one({"_rond": round_rond})
+		round.find_one({"_id": round_rond})
 
 

@@ -5,7 +5,9 @@
 """
 import pymongo
 import datetime
+from pymongo import MongoClient
 
+<<<<<<< HEAD
 class MongoDB(object):
     def __init__(self):
     	self.database
@@ -38,3 +40,41 @@ class MongoDB(object):
 
     def search_round(self, number):
         round_.find_one({"round": number})
+=======
+class pymongodb(object):
+	
+	def __init__(self):
+		
+		self.person  = {}
+		self.round   = {}
+		self.team    = {}
+		self.members = {}
+
+	def connect_to_mongo():
+	    
+	    client = MongoClient("localhost", 27017)
+	    db = client.statpro
+
+	def post_person(self, _round, _person):
+			post = {"person": self.person[_person],
+        			"round" : self.round[_round],
+        			"date"  : datetime.datetime.today()}
+			person = db.person
+			person_id = person.insert(person)
+
+	def post_round(self, _team, _members):
+			post = {"team"    : self.team[_team],
+        			"members" : self.members[_members],
+        			"date"    : datetime.datetime.today()}
+
+			round = db.round
+			round_id = round.insert(round)
+
+	def search_person():
+		person.find_one({"_id": person_pers})
+
+	def search_round():
+		round.find_one({"_id": round_rond})
+
+
+>>>>>>> 44688ad20b3d5d6640501853e0b285dd6edcc829
